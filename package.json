@@ -1,0 +1,16 @@
+{
+  "name": "igniteComits",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "crud": "pnpm --filter crud"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}
