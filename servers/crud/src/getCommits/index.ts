@@ -1,20 +1,21 @@
-import { createClient } from "@supabase/supabase-js";
+import { SupabaseClient } from "@supabase/supabase-js";
+import { Hono } from "hono";
 
-const supabase = createClient(
-  "https://zvaelggcvmvawchfzgzo.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp2YWVsZ2djdm12YXdjaGZ6Z3pvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTA1OTI3NTYsImV4cCI6MjAyNjE2ODc1Nn0.C4h2wi4h1Xn-xVYJtdkWWXEu_ikld1lhgjD6EbXB4go",
-);
+export const commits = new Hono().basePath("/commits");
 
 type Pagination = {
   page: number;
   perPage: number;
 };
-export async function getIssues(pagination?: Pagination) {
+export async function getCommits(
+  supabase: SupabaseClient,
+  pagination?: Pagination,
+) {
   if (!pagination) {
     let { data: commits_ignite } = await supabase
       .from("commits_ignite")
-      .select("*")
-      .range(0, 9);
+      .select("*");
+    console.log(commits_ignite);
     return commits_ignite;
   }
   const { page, perPage } = pagination;
