@@ -13,7 +13,8 @@ export function App() {
     queryKey: ["repoData"],
     queryFn: () =>
       fetch(
-        "localhost:4200" + new URLSearchParams({ page: "1", perPage: "10" }),
+        "http://localhost:4200/getCommits?" +
+          new URLSearchParams({ page: "1", perPage: "10" }),
       ).then((res) => res.json()),
   });
   return (

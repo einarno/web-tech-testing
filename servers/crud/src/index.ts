@@ -1,10 +1,22 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { getSupabase, supabaseMiddleware } from "./middleware/supabase";
 import { getCommits } from "./getCommits";
 const app = new Hono();
 
 app.use("*", supabaseMiddleware);
 
+app.use(
+  "*",
+  cors({
+    origin: "http://localhost:5173",
+    allowHeaders: ["Content-Type", "Authorization"],
+    allowMethods: ["POST", "GET", "OPTIONS"],
+    exposeHeaders: ["Content-Length"],
+    maxAge: 600,
+    credentials: true,
+  }),
+);
 app.get("/", (c) => {
   return c.text("Hello Cloudflare Workers!");
 });
