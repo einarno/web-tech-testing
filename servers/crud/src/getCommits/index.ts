@@ -15,7 +15,6 @@ export async function getCommits(
     let { data: commits_ignite } = await supabase
       .from("commits_ignite")
       .select("*");
-    console.log(commits_ignite);
     return commits_ignite;
   }
   const { page, perPage } = pagination;

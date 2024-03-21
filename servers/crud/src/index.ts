@@ -1,6 +1,4 @@
 import { Hono } from "hono";
-
-import { createClient } from "@supabase/supabase-js";
 import { getSupabase, supabaseMiddleware } from "./middleware/supabase";
 import { getCommits } from "./getCommits";
 const app = new Hono();
@@ -13,13 +11,12 @@ app.get("/", (c) => {
 
 app.get("/getCommits", async (c) => {
   const supabase = getSupabase(c);
-
   const { page: pageString, perPage: perPageString } = c.req.query();
   const page = pageString ? parseInt(pageString) : undefined;
   const perPage = perPageString ? parseInt(perPageString) : undefined;
 
   const pagination = page && perPage ? { page, perPage } : undefined;
-
+  console.log(pagination, page, perPage);
   const issues = await getCommits(supabase, pagination);
   return c.json(issues);
 });
