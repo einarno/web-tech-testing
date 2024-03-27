@@ -21,7 +21,6 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@ignite-analytics/eslint-config": "2.0.6",
     "@types/node": "^20.7.1",
     "ts-node": "^10.9.1",
     "tsup": "^6.7.0",
