@@ -22,7 +22,7 @@ type Props = {
 };
 export const CommitsTable: React.FC<Props> = ({ commits, pagination }) => {
   return (
-    <div className="container mx-auto">
+    <div>
       <TableCaption>Commits</TableCaption>
       <Table>
         <TableHeader>
